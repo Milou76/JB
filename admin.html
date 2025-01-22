@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logooo.png">
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+    
+        // Configuration de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBre8GHoEUFZESa6aM1suCUA2KIZDUJwtI",
+            authDomain: "competjbrel.firebaseapp.com",
+            databaseURL: "https://competjbrel-default-rtdb.firebaseio.com",
+            projectId: "competjbrel",
+            storageBucket: "competjbrel.appspot.com",
+            messagingSenderId: "410697942844",
+            appId: "1:410697942844:web:f41e4e1f1b66208bce0039"
+        };
+    
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        window.db = db;
+    </script>
+    
+    <script type="module" src="admin.js"></script>
+    <script src="admin2.js"></script>
+    <link rel="stylesheet" href="admin.css">
+
+    <title>Gestion des Activités</title>
+</head>
+<body>
+    <strong><div id="title-1">1. Recherche et analyse d'informations</div></strong>
+    <div id="tableau-container-1">
+    </div>
+    <strong><div id="title-2">2. Organisation et préparation du travail</div></strong>
+    <div id="tableau-container-2">
+    </div>
+    <strong><div id="title-3">3. Réalisation</div></strong>
+    <div id="tableau-container-3">
+    </div>
+    <strong><div id="title-4">4. Communication et compte-rendu</div></strong>
+    <div id="tableau-container-4">
+    </div>
+    <div class="container">
+        <button class="button" id="enregistrerBtn">Enregistrer les données</button>
+    </div>
+    <div id="colorPanel">
+        <div style="background-color: #006400;" onclick="appliquerCouleur('green')"></div> <!-- VF : Vert foncé -->
+        <div style="background-color: #008000;" onclick="appliquerCouleur('mediumseagreen')"></div> <!-- VM : Vert moyen -->
+        <div style="background-color: #90EE90;" onclick="appliquerCouleur('lightgreen')"></div> <!-- VC : Vert clair -->
+        <div style="background-color: yellow;" onclick="appliquerCouleur('yellow')"></div> <!-- J : Jaune -->
+        <div style="background-color: orange;" onclick="appliquerCouleur('orange')"></div> <!-- O : Orange -->
+        <div style="background-color: red;" onclick="appliquerCouleur('red')"></div> <!-- R : Rouge -->
+        <div onclick="appliquerNote('A')" class="abs-ne" style="background-color: white; border: 1px solid #ccc;">ABS</div> <!-- ABS : Absent -->
+        <div onclick="appliquerNote('N')" class="abs-ne" style="background-color: white; border: 1px solid #ccc;">NE</div> <!-- NE : Non évalué -->
+    </div>
+    <script src="tableau1.js"></script>
+</body>
+</html>

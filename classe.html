@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classes</title>
+  <style>
+    /* Style de base pour la page */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4 50%, #a18cd1);
+      font-family: Arial, sans-serif;
+    }
+
+    /* Container principal */
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Titre */
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    /* Boutons */
+    button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 20px;
+      background: linear-gradient(45deg, #a18cd1, #fad0c4);
+      color: rgb(150, 115, 115);
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: linear-gradient(45deg, #fad0c4, #a18cd1);
+    }
+
+    /* Modale */
+    .modale {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .modale-content {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .modale-content h2 {
+      color: #a18cd1;
+    }
+
+    .modale-content button {
+      background-color: #ff9a9e;
+      color: white;
+      margin: 5px;
+    }
+
+    .modale-content button:hover {
+      background-color: #fad0c4;
+    }
+
+    /* Responsive */
+    /* Pour les petits écrans (téléphones) */
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 1.2rem;
+      }
+      button {
+        font-size: 14px;
+        padding: 8px;
+      }
+      .container {
+        padding: 20px;
+        max-width: 90%;
+      }
+    }
+
+    /* Pour les tablettes et écrans moyens */
+    @media screen and (min-width: 601px) and (max-width: 1024px) {
+      h1 {
+        font-size: 1.4rem;
+      }
+      button {
+        font-size: 15px;
+        padding: 9px;
+      }
+      .container {
+        padding: 25px;
+        max-width: 80%;
+      }
+    }
+
+    /* Pour les écrans d'ordinateurs de bureau */
+    @media screen and (min-width: 1025px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+      button {
+        font-size: 16px;
+        padding: 10px;
+      }
+      .container {
+        padding: 30px;
+        max-width: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gérer les Classes</h1>
+    <!-- Boutons de sélection des classes -->
+    <button id="btn3eme">Classe de 3ème</button>
+    <button id="btn4eme">Classe de 4ème</button>
+    
+    <!-- Modale Classe 3ème -->
+    <div id="modale3eme" class="modale">
+      <div class="modale-content">
+        <h2>Élèves de la Classe de 3ème</h2>
+        <button class="eleve" data-idBdd="i4xdhdgWv9gPkDZMWw33" onclick="afficherEleve(this)">Leslie Catelain</button>
+        <button class="eleve" data-idBdd="yEInDwc1661VTikWgTBn" onclick="afficherEleve(this)">Enzo Chapelliere</button>
+        <button class="eleve" data-idBdd="YWtn18tzop3PxBStKJxg" onclick="afficherEleve(this)">D'shawn Cocks</button>
+        <button class="eleve" data-idBdd="Ry2bh0iEobD2Wj98Necj" onclick="afficherEleve(this)">Naïla Goumaux</button>
+        <button class="eleve" data-idBdd="jUAAfmDSWk9aB9hS1HAP" onclick="afficherEleve(this)">Clara Morel</button>
+        <button class="eleve" data-idBdd="MVxyRVgsVWucJDURqf0n" onclick="afficherEleve(this)">Manon Pitard</button>
+        <button onclick="fermerModale('modale3eme')">Fermer</button>
+      </div>
+    </div>
+
+    <!-- Modale Classe 4ème -->
+    <div id="modale4eme" class="modale">
+      <div class="modale-content">
+        <h2>Classe de 4ème</h2>
+        <button id="btnGroupe1">Groupe 1</button>
+        <button id="btnGroupe2">Groupe 2</button>
+        <button onclick="fermerModale('modale4eme')">Fermer</button>
+      </div>
+    </div>
+
+    <!-- Modale Groupe 1 de 4ème -->
+    <div id="modaleGroupe1" class="modale">
+      <div class="modale-content">
+        <h2>Élèves du Groupe 1 (4ème)</h2>
+        <button class="eleve" data-idBdd="w7OEKgfupysL0jXDmxor" onclick="afficherEleve(this)">Saona Bauer</button>
+        <button class="eleve" data-idBdd="iiijS0LcQHhX7kuqucgV" onclick="afficherEleve(this)">Tommy Hague</button>
+        <button class="eleve" data-idBdd="mWk0o1uV41DYOaEIYiWr" onclick="afficherEleve(this)">Sayan Picard</button>
+        <button class="eleve" data-idBdd="8Ja2nFkpku4AFnpTtfT4" onclick="afficherEleve(this)">Sory Tall</button>
+        <button class="eleve" data-idBdd="NrcEDpGBBoYyFnGSqL9X" onclick="afficherEleve(this)">Jeanne Voidie</button>
+        <button class="eleve" data-idBdd="5qE4ZltFiySY33oNE7Ue" onclick="afficherEleve(this)">Mohamed Yoro</button>
+        <button onclick="fermerModale('modaleGroupe1')">Fermer</button>
+      </div>
+    </div>
+
+    <!-- Modale Groupe 2 de 4ème -->
+    <div id="modaleGroupe2" class="modale">
+      <div class="modale-content">
+        <h2>Élèves du Groupe 2 (4ème)</h2>
+        <button class="eleve" data-idBdd="MeOVEtBRarr3znfWu2rJ" onclick="afficherEleve(this)">Naïla Dellaoui Masse</button>
+        <button class="eleve" data-idBdd="ZbsMMj8y14CJGwOKWNVj" onclick="afficherEleve(this)">Lyséane Garnier</button>
+        <button class="eleve" data-idBdd="YnOO2ZdbhQ9yz0lWlyTT" onclick="afficherEleve(this)">Rafael Lagrene Funica</button>
+        <button class="eleve" data-idBdd="LwRjHyvvJ90poX7oSCgz" onclick="afficherEleve(this)">Huseyin Machu</button>
+        <button class="eleve" data-idBdd="io1bMbHWPUItV1RnL8LH" onclick="afficherEleve(this)">Mamadou Thiam</button>
+        <button class="eleve" data-idBdd="B6h7gWRL0pyfpPCMlgOH" onclick="afficherEleve(this)">Alyzé Trupin Derache</button>
+        <button onclick="fermerModale('modaleGroupe2')">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Ouvrir la modale de la classe 3ème
+    document.getElementById('btn3eme').addEventListener('click', function() {
+      document.getElementById('modale3eme').style.display = 'flex';
+    });
+    // Ouvrir la modale de la classe 4ème
+    document.getElementById('btn4eme').addEventListener('click', function() {
+      document.getElementById('modale4eme').style.display = 'flex';
+    });
+    // Ouvrir la modale du groupe 1 de la classe de 4ème
+    document.getElementById('btnGroupe1').addEventListener('click', function() {
+      document.getElementById('modaleGroupe1').style.display = 'flex';
+    });
+    // Ouvrir la modale du groupe 2 de la classe de 4ème
+    document.getElementById('btnGroupe2').addEventListener('click', function() {
+      document.getElementById('modaleGroupe2').style.display = 'flex';
+    });
+    // Fermer la modale
+    function fermerModale(modaleId) {
+      document.getElementById(modaleId).style.display = 'none';
+    }
+    // Afficher les détails d'un élève en redirigeant vers admin.html avec l'IdBdd
+    function afficherEleve(button) {
+      var idBdd = button.getAttribute('data-idBdd');
+      window.location.href = "admin.html?idBDD=" + idBdd;
+    }
+  </script>
+</body>
+</html>

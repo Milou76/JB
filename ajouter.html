@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajouter et Voir les Élèves</title>
+  <!-- Importer Firebase via CDN (modulaire) -->
+  <script type="module">
+    import { 
+      initializeApp 
+    } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+    import { 
+      getFirestore, 
+      collection, 
+      addDoc, 
+      getDocs, 
+      onSnapshot 
+    } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+
+    // Configuration Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyBre8GHoEUFZESa6aM1suCUA2KIZDUJwtI",
+      authDomain: "competjbrel.firebaseapp.com",
+      projectId: "competjbrel",
+      storageBucket: "competjbrel.appspot.com",
+      messagingSenderId: "410697942844",
+      appId: "1:410697942844:web:f41e4e1f1b66208bce0039"
+    };
+
+    // Initialiser Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Fonction pour ajouter un élève
+    async function ajouterEleve(event) {
+      event.preventDefault(); // Empêcher la soumission par défaut du formulaire
+
+      const nom = document.getElementById('nom').value.trim();
+      const classe = document.getElementById('classe').value.trim();
+
+      if (!nom || !classe) {
+        alert("Veuillez remplir tous les champs.");
+        return;
+      }
+
+      try {
+        // Ajouter l'élève dans Firestore
+        await addDoc(collection(db, "eleves"), {
+          nom: nom,
+          classe: classe
+        });
+
+        document.getElementById('ajout-eleve-form').reset(); // Réinitialiser le formulaire
+
+      } catch (error) {
+        console.error("Erreur lors de l'ajout de l'élève :", error);
+        alert("Une erreur est survenue.");
+      }
+    }
+
+    // Fonction pour charger et afficher les élèves
+    function chargerEleves() {
+      const tableauBody = document.getElementById('tableau-eleves-body');
+
+      // Effacer le contenu du tableau
+      tableauBody.innerHTML = '';
+
+      // Écouter les mises à jour de Firestore en temps réel
+      const elevesCollection = collection(db, "eleves");
+      onSnapshot(elevesCollection, (snapshot) => {
+        tableauBody.innerHTML = ''; // Réinitialiser le tableau
+
+        snapshot.forEach((doc) => {
+          const eleve = doc.data();
+          const ligne = document.createElement('tr');
+
+          const celluleNom = document.createElement('td');
+          celluleNom.textContent = eleve.nom;
+
+          const celluleClasse = document.createElement('td');
+          celluleClasse.textContent = eleve.classe;
+
+          ligne.appendChild(celluleNom);
+          ligne.appendChild(celluleClasse);
+          tableauBody.appendChild(ligne);
+        });
+      });
+    }
+
+    // Charger les élèves au chargement de la page
+    document.addEventListener('DOMContentLoaded', chargerEleves);
+
+    // Attacher l'événement au formulaire
+    document.getElementById('ajout-eleve-form').addEventListener('submit', ajouterEleve);
+  </script>
+</head>
+<body>
+  <h1>Ajouter un Élève</h1>
+  <form id="ajout-eleve-form">
+    <label for="nom">Nom de l'élève :</label>
+    <input type="text" id="nom" placeholder="Nom" required>
+    <br><br>
+    <label for="classe">Classe :</label>
+    <input type="text" id="classe" placeholder="Classe (ex: 3ème)" required>
+    <br><br>
+    <button type="submit">Ajouter</button>
+  </form>
+
+  <h2>Liste des Élèves</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Classe</th>
+      </tr>
+    </thead>
+    <tbody id="tableau-eleves-body">
+      <!-- Les élèves seront chargés ici -->
+    </tbody>
+  </table>
+</body>
+</html>

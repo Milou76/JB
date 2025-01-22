@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Livret des compétences</title>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #da7376, #a07f76 70%, #6e58a1);
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      color: rgb(104, 76, 76);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    /* Form Container */
+    .form-container {
+      background: rgba(48, 44, 44, 0.1);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 30px;
+      width: 320px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Identifiant Field */
+    .identifiant {
+      width: 92%; /* Uniforme pour le champ Identifiant */
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.521);
+      color: rgb(60, 50, 50);
+      outline: none;
+      font-size: 14px;
+    }
+
+    /* Password Field */
+    .password-container {
+      position: relative; 
+    }
+
+    .password-container .mdp {
+      width: 250px;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.521);
+      color: rgb(60, 50, 50);
+      outline: none;
+      font-size: 14px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 18px;
+      color: rgb(27, 14, 14);
+    }
+
+    .toggle-password:hover {
+      color: white;
+    }
+
+    /* Button */
+    form button {
+      width: 100%;
+      padding: 10px;
+      margin: 20px 0;
+      border: none;
+      border-radius: 20px;
+      background: linear-gradient(45deg, #a18cd1, #fad0c4);
+      color: rgb(150, 115, 115);
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background: linear-gradient(45deg, #fad0c4, #a18cd1);
+    }
+
+    /* Forgot Password */
+    .forgot-password {
+      text-decoration: none;
+      color: rgb(56, 44, 44);
+      font-size: 12px;
+    }
+
+    .forgot-password:hover {
+      text-decoration: underline;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>Bienvenue</h1>
+    <form>
+      <!-- Identifiant -->
+      <input type="text" class="identifiant" placeholder="Identifiant" required>
+
+      <!-- Mot de passe avec icône d'œil -->
+      <div class="password-container">
+        <input type="password" class="mdp" id="password" placeholder="Mot de passe" required>
+        <span id="toggle-password" class="toggle-password">&#128065;</span>
+      </div>
+
+      <button type="submit">Connexion</button>
+      <a href="#" class="forgot-password">Mot de passe oublié</a>
+    </form>
+  </div>
+  <script>
+    // Sélectionner l'élément de mot de passe et l'icône d'œil
+    const passwordInput = document.getElementById('password');
+    const togglePassword = document.getElementById('toggle-password');
+
+    // Ajouter un événement au clic sur l'icône
+    togglePassword.addEventListener('click', () => {
+      // Vérifier le type actuel du champ de mot de passe
+      const isPasswordVisible = passwordInput.type === 'text';
+
+      // Basculer entre 'password' et 'text'
+      passwordInput.type = isPasswordVisible ? 'password' : 'text';
+
+      // Changer l'icône en fonction de l'état
+      togglePassword.textContent = isPasswordVisible ? '👁️' : '🙈';
+    });
+
+
+// Liste d'exemples d'identifiants et mots de passe (à remplacer par ta propre logique de gestion)
+const utilisateurs = [
+     { id: "LeslieC", motdepasse: "SegpaJB", idBdd: "i4xdhdgWv9gPkDZMWw33" }, // Leslie
+       { id: "EnzoC", motdepasse: "SegpaJB", idBdd: "yEInDwc1661VTikWgTBn" }, // Enzo
+    { id: "D'shawnC", motdepasse: "SegpaJB", idBdd: "YWtn18tzop3PxBStKJxg" }, // D'shawn
+      { id: "NaïlaG", motdepasse: "SegpaJB", idBdd: "Ry2bh0iEobD2Wj98Necj" }, // Naïla
+      { id: "ClaraM", motdepasse: "SegpaJB", idBdd: "jUAAfmDSWk9aB9hS1HAP" }, // Clara
+      { id: "ManonP", motdepasse: "SegpaJB", idBdd: "MVxyRVgsVWucJDURqf0n" }, // Manon
+      { id: "SaonaB", motdepasse: "SegpaJB", idBdd: "w7OEKgfupysL0jXDmxor" }, // Saona
+      { id: "TommyH", motdepasse: "SegpaJB", idBdd: "iiijS0LcQHhX7kuqucgV" }, // Tommy
+      { id: "SayanP", motdepasse: "SegpaJB", idBdd: "mWk0o1uV41DYOaEIYiWr" }, // Sayan
+       { id: "SoryT", motdepasse: "SegpaJB", idBdd: "8Ja2nFkpku4AFnpTtfT4" }, // Sory
+     { id: "JeanneV", motdepasse: "SegpaJB", idBdd: "NrcEDpGBBoYyFnGSqL9X" }, // Jeanne
+    { id: "MohamedY", motdepasse: "SegpaJB", idBdd: "5qE4ZltFiySY33oNE7Ue" }, // Mohamed
+      { id: "NaïlaD", motdepasse: "SegpaJB", idBdd: "MeOVEtBRarr3znfWu2rJ" }, // Naïlaa
+    { id: "LyséaneG", motdepasse: "SegpaJB", idBdd: "ZbsMMj8y14CJGwOKWNVj" }, // Lyséane
+     { id: "RafaelL", motdepasse: "SegpaJB", idBdd: "YnOO2ZdbhQ9yz0lWlyTT" }, // Rafael
+     { id: "Huseyin", motdepasse: "SegpaJB", idBdd: "LwRjHyvvJ90poX7oSCgz" }, // Huseyin
+    { id: "MamadouT", motdepasse: "SegpaJB", idBdd: "io1bMbHWPUItV1RnL8LH" }, // Mamadou
+      { id: "AlyzéT", motdepasse: "SegpaJB", idBdd: "B6h7gWRL0pyfpPCMlgOH" }, // Alyzé    
+
+    { id: "greta.bisson", motdepasse: "Garbot76", type: "admin" },  // Utilisateur admin
+    { id: "t", motdepasse: "s", type: "admin" }  // Utilisateur admin
+  ];
+
+  
+  function connexion() {
+  // Récupérer les valeurs du formulaire
+  const identifiant = document.querySelector('.identifiant').value;
+  const motdepasse = document.querySelector('.mdp').value;
+
+  // Vérifier si l'identifiant et le mot de passe sont corrects
+  const utilisateurTrouve = utilisateurs.find(utilisateur => utilisateur.id === identifiant && utilisateur.motdepasse === motdepasse);
+
+  if (utilisateurTrouve) {
+    if (utilisateurTrouve.type === "admin") {
+      // Si c'est un admin, rediriger vers classe.html sans paramètre
+      sessionStorage.setItem('utilisateur', JSON.stringify(utilisateurTrouve));
+      window.location.href = 'classe.html';
+    } else {
+      // Si c'est un élève, inclure IdBdd dans l'URL
+      sessionStorage.setItem('utilisateur', JSON.stringify(utilisateurTrouve));
+      const url = `evaluation.html?idBDD=${encodeURIComponent(utilisateurTrouve.idBdd)}`;
+      window.location.href = url;  // Redirection avec le paramètre idBDD
+    }
+  } else {
+    // Si les identifiants sont incorrects, afficher un message d'erreur
+    alert("Identifiant ou mot de passe incorrect.");
+  }
+}
+
+  // Ajouter un événement au formulaire pour empêcher le rechargement de la page et appeler la fonction connexion
+  document.querySelector('form').addEventListener('submit', function(event) {
+    event.preventDefault();  // Empêcher le rechargement de la page
+    connexion();
+  });
+  
+  </script>
+</body>
+</html>

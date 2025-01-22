@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quatre Tableaux Alignés</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    table-layout: auto; /* Utilisation de table-layout auto pour que les colonnes prennent la largeur du contenu */
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    word-wrap: break-word; /* Permet de couper le texte si nécessaire */
+}
+
+th {
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ccc; /* Bordure pour les entêtes */
+}
+
+td {
+    border-left: 1px solid #ccc;  /* Bordure à gauche des cellules */
+    border-right: 1px solid #ccc; /* Bordure à droite des cellules */
+}
+
+th:nth-child(1), td:nth-child(1) { 
+    width: 15%; /* Réduire la largeur pour la colonne des codes */
+}
+
+th:nth-child(2), td:nth-child(2) { 
+    width: 40%; /* Largeur pour les activités plus large */
+}
+
+th:nth-child(3), td:nth-child(3) { 
+    width: 15%; /* Largeur pour la validation, peut-être plus petite */
+}
+
+th:nth-child(4), td:nth-child(4) { 
+    width: 30%; /* Largeur pour les connaissances, ajustée */
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.validation-cell {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 5px;
+}
+
+#colorPanel {
+    position: absolute;
+    display: none;
+    border: 1px solid #ccc;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#colorPanel div {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#colorPanel div.abs-ne {
+    width: 50px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#btnEnregistrer {
+    padding: 12px 24px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#btnEnregistrer:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+#btnEnregistrer:active {
+    transform: scale(0.98);
+}
+
+/* Ajustements pour les tablettes */
+@media (max-width: 768px) {
+    th, td {
+        padding: 8px; /* Réduire les espacements pour les petits écrans */
+    }
+
+    table {
+        table-layout: fixed; /* S'assurer que les colonnes sont de taille égale */
+    }
+
+    th, td {
+        word-wrap: break-word;
+        text-align: center; /* Centrer le texte dans les colonnes */
+    }
+
+    th:nth-child(1), td:nth-child(1) {
+        width: 20%;
+    }
+
+    th:nth-child(2), td:nth-child(2) {
+        width: 50%;
+    }
+
+    th:nth-child(3), td:nth-child(3) {
+        width: 15%;
+    }
+
+    th:nth-child(4), td:nth-child(4) {
+        width: 30%;
+    }
+
+    #btnEnregistrer {
+        width: 100%; /* Rendre le bouton plus large sur tablette */
+        font-size: 18px;
+    }
+}
+
+/* Ajustements spécifiques pour les petits écrans de téléphone */
+@media (max-width: 480px) {
+    table {
+        font-size: 12px; /* Réduire la taille de la police du tableau pour les petits écrans */
+        margin: 10px 0; /* Réduire la marge autour du tableau */
+    }
+
+    th, td {
+        padding: 6px; /* Réduire les espacements pour les petits écrans */
+        text-align: center; /* Centrer le texte dans les cellules */
+    }
+
+    th:nth-child(1), td:nth-child(1) {
+        width: 25%; /* Augmenter la largeur de la première colonne pour qu'elle soit plus lisible */
+    }
+
+    th:nth-child(2), td:nth-child(2) {
+        width: 50%; /* Réduire la largeur de la deuxième colonne pour mieux s'adapter */
+    }
+
+    th:nth-child(3), td:nth-child(3) {
+        width: 10%; /* Réduire la largeur de la troisième colonne */
+    }
+
+    th:nth-child(4), td:nth-child(4) {
+        width: 20%; /* Réduire la largeur de la quatrième colonne */
+    }
+
+    #btnEnregistrer {
+        width: 100%; /* Rendre le bouton plus large sur téléphone */
+        font-size: 14px; /* Réduire la taille de la police pour le bouton */
+        padding: 10px 20px; /* Réduire la taille du bouton pour l'adapter aux petits écrans */
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Titre et Tableau 1 -->
+    <strong><div id="title">1. Recherche et analyse d'informations</div></strong>
+    <div id="tableau-container-1"></div>
+
+    <!-- Titre et Tableau 2 -->
+    <strong><div id="title">2. Organisation et préparation du travail</div></strong>
+    <div id="tableau-container-2"></div>
+
+    <!-- Titre et Tableau 3 -->
+    <strong><div id="title">3. Réalisation</div></strong>
+    <div id="tableau-container-3"></div>
+
+    <!-- Titre et Tableau 4 -->
+    <strong><div id="title">4. Communication et compte-rendu</div></strong>
+    <div id="tableau-container-4"></div>
+
+    <div id="colorPanel">
+        <div style="background-color: #006400;" onclick="appliquerCouleur('green')"></div> <!-- VF : Vert foncé -->
+        <div style="background-color: #008000;" onclick="appliquerCouleur('green')"></div> <!-- VM : Vert moyen -->
+        <div style="background-color: #90EE90;" onclick="appliquerCouleur('lightgreen')"></div> <!-- VC : Vert clair -->
+        <div style="background-color: yellow;" onclick="appliquerCouleur('yellow')"></div> <!-- J : Jaune -->
+        <div style="background-color: orange;" onclick="appliquerCouleur('orange')"></div> <!-- O : Orange -->
+        <div style="background-color: red;" onclick="appliquerCouleur('red')"></div> <!-- R : Rouge -->
+        <div onclick="appliquerNote('A')" class="abs-ne" style="background-color: white; border: 1px solid #ccc;">ABS</div> <!-- ABS : Absent -->
+        <div onclick="appliquerNote('N')" class="abs-ne" style="background-color: white; border: 1px solid #ccc;">NE</div> <!-- NE : Non évalué -->
+    </div>
+    
+    <button id="btnEnregistrer">Enregistrer</button>
+
+
+    <script src="tableau1.js"></script>
+</body>
+</html>
