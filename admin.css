@@ -6,43 +6,52 @@ table {
   border-collapse: collapse;
   width: 100%;
   margin: 20px 0;
-  table-layout: auto; /* Utilisation de table-layout auto pour que les colonnes prennent la largeur du contenu */
+  table-layout: auto;
 }
 
 th, td {
   padding: 10px;
   text-align: left;
-  word-wrap: break-word; /* Permet de couper le texte si nécessaire */
+  word-wrap: break-word;
 }
 
 th {
   background-color: #f4f4f4;
-  border-bottom: 1px solid #ccc; /* Bordure pour les entêtes */
+  border-bottom: 1px solid #ccc;
 }
 
 td {
-  border-left: 1px solid #ccc;  /* Bordure à gauche des cellules */
-  border-right: 1px solid #ccc; /* Bordure à droite des cellules */
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
 }
 
-th:nth-child(1), td:nth-child(1) { 
-  width: 2%; /* Réduire la largeur pour la colonne des codes */
+th:nth-child(1), td:nth-child(1) {
+  width: 2%;
 }
 
-th:nth-child(2), td:nth-child(2) { 
-  width: 30%; /* Largeur pour les activités plus large */
+th:nth-child(2), td:nth-child(2) {
+  width: 30%;
 }
 
-th:nth-child(3), td:nth-child(3) { 
-  width: 3%; /* Largeur pour la validation, peut-être plus petite */
+th:nth-child(3), td:nth-child(3) {
+  width: 3%;
 }
 
-th:nth-child(4), td:nth-child(4) { 
-  width: 40%; /* Largeur pour les connaissances, ajustée */
+th:nth-child(4), td:nth-child(4) {
+  width: 40%;
 }
 
 .bold {
   font-weight: bold;
+}
+
+/* Conteneur flex pour aligner les cases à cocher horizontalement et centrer */
+.validation-cell-container {
+  display: flex;
+  justify-content: center; /* Centrer horizontalement par rapport à la ligne */
+  align-items: center; /* Centrer verticalement */
+  gap: 5px; /* Espacement entre les cases à cocher */
+  flex-wrap: wrap; /* Permet de passer à la ligne sur les écrans très petits */
 }
 
 .validation-cell {
@@ -51,8 +60,8 @@ th:nth-child(4), td:nth-child(4) {
   border: 1px solid #ccc;
   cursor: pointer;
   display: inline-block;
-  margin: 0 5px;
-  vertical-align: middle; /* Aligner verticalement avec d'autres éléments */
+  margin: 0;
+  vertical-align: middle;
 }
 
 /* Centrer la lettre dans les cases ABS et NE */
@@ -62,9 +71,9 @@ th:nth-child(4), td:nth-child(4) {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 14px; /* Taille de police ajustée pour plus de lisibilité */
+  font-size: 14px;
   font-weight: bold;
-  text-align: center; /* Centrer horizontalement la lettre */
+  text-align: center;
 }
 
 /* Centrer verticalement et horizontalement les éléments dans les cellules */
@@ -87,109 +96,120 @@ th:nth-child(4), td:nth-child(4) {
   background-color: white;
   padding: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 1000; /* S'assurer que le panneau est au-dessus des autres éléments */
+  z-index: 1000;
 }
 
 /* Ajustements pour les tablettes */
 @media (max-width: 768px) {
   th, td {
-      padding: 8px; /* Réduire les espacements pour les petits écrans */
+    padding: 8px;
   }
 
   table {
-      table-layout: fixed; /* S'assurer que les colonnes sont de taille égale */
+    table-layout: fixed;
   }
 
   th, td {
-      word-wrap: break-word;
-      text-align: center; /* Centrer le texte dans les colonnes */
+    word-wrap: break-word;
+    text-align: center;
   }
 
   th:nth-child(1), td:nth-child(1) {
-      width: 20%;
+    width: 20%;
   }
 
   th:nth-child(2), td:nth-child(2) {
-      width: 50%;
+    width: 50%;
   }
 
   th:nth-child(3), td:nth-child(3) {
-      width: 15%;
+    width: 15%;
   }
 
   th:nth-child(4), td:nth-child(4) {
-      width: 30%;
+    width: 30%;
+  }
+
+  .validation-cell-container {
+    justify-content: center; /* Centrer les cases à cocher sur les petits écrans */
+    align-items: center; /* Centrer verticalement */
   }
 }
 
 /* Ajustements spécifiques pour les petits écrans de téléphone */
 @media (max-width: 480px) {
   table {
-      font-size: 12px; /* Réduire la taille de la police du tableau pour les petits écrans */
-      margin: 10px 0; /* Réduire la marge autour du tableau */
+    font-size: 12px;
+    margin: 10px 0;
   }
 
   th, td {
-      padding: 6px; /* Réduire les espacements pour les petits écrans */
-      text-align: center; /* Centrer le texte dans les cellules */
+    padding: 6px;
+    text-align: center;
   }
 
   th:nth-child(1), td:nth-child(1) {
-      width: 25%; /* Augmenter la largeur de la première colonne pour qu'elle soit plus lisible */
+    width: 25%;
   }
 
   th:nth-child(2), td:nth-child(2) {
-      width: 50%; /* Réduire la largeur de la deuxième colonne pour mieux s'adapter */
+    width: 50%;
   }
 
   th:nth-child(3), td:nth-child(3) {
-      width: 10%; /* Réduire la largeur de la troisième colonne */
+    width: 10%;
   }
 
   th:nth-child(4), td:nth-child(4) {
-      width: 20%; /* Réduire la largeur de la quatrième colonne */
+    width: 20%;
+  }
+
+  .validation-cell-container {
+    gap: 3px; /* Réduire l’espacement entre les cases à cocher */
+    justify-content: center;
+    align-items: center;
   }
 }
 
 button {
-font-size: 1.4em;
-padding: 0.6em 0.8em;
-border-radius: 0.5em;
-border: none;
-background-color: #d4bebe;
-color: #312d2d;
-cursor: pointer;
-box-shadow: 2px 2px 3px #000000b4;
+  font-size: 1.4em;
+  padding: 0.6em 0.8em;
+  border-radius: 0.5em;
+  border: none;
+  background-color: #d4bebe;
+  color: #312d2d;
+  cursor: pointer;
+  box-shadow: 2px 2px 3px #000000b4;
 }
 
 .container {
-display: inline-block; /* Permet à la largeur de s'adapter au contenu */
-position: relative;
-padding: 3px;
-background: linear-gradient(90deg, #03a9f4, #f441a5);
-border-radius: 0.9em;
-transition: all 0.4s ease;
+  display: inline-block;
+  position: relative;
+  padding: 3px;
+  background: linear-gradient(90deg, #03a9f4, #f441a5);
+  border-radius: 0.9em;
+  transition: all 0.4s ease;
 }
 
 .container::before {
-content: "";
-position: absolute;
-top: 0;
-bottom: 0;
-left: 0;
-right: 0;
-margin: auto;
-border-radius: 0.9em;
-z-index: -10;
-filter: blur(0);
-transition: filter 0.4s ease;
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border-radius: 0.9em;
+  z-index: -10;
+  filter: blur(0);
+  transition: filter 0.4s ease;
 }
 
 .container:hover::before {
-background: linear-gradient(90deg, #03a9f4, #f441a5);
-filter: blur(1.2em);
+  background: linear-gradient(90deg, #03a9f4, #f441a5);
+  filter: blur(1.2em);
 }
 
 .container:active::before {
-filter: blur(0.2em);
+  filter: blur(0.2em);
 }
