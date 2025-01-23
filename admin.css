@@ -48,10 +48,11 @@ th:nth-child(4), td:nth-child(4) {
 /* Conteneur flex pour aligner les cases à cocher horizontalement et centrer */
 .validation-cell-container {
   display: flex;
-  justify-content: center; /* Centrer horizontalement par rapport à la ligne */
+  justify-content: center; /* Centrer horizontalement par rapport à la colonne */
   align-items: center; /* Centrer verticalement */
   gap: 5px; /* Espacement entre les cases à cocher */
   flex-wrap: wrap; /* Permet de passer à la ligne sur les écrans très petits */
+  height: 100%; /* S'assurer que le conteneur occupe toute la hauteur de la cellule */
 }
 
 .validation-cell {
