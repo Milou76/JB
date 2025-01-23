@@ -100,7 +100,7 @@ th:nth-child(4), td:nth-child(4) {
 }
 
 /* Ajustements pour les tablettes */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   th, td {
     padding: 8px;
   }
@@ -115,23 +115,23 @@ th:nth-child(4), td:nth-child(4) {
   }
 
   th:nth-child(1), td:nth-child(1) {
-    width: 20%;
-  }
-
-  th:nth-child(2), td:nth-child(2) {
-    width: 50%;
-  }
-
-  th:nth-child(3), td:nth-child(3) {
     width: 15%;
   }
 
+  th:nth-child(2), td:nth-child(2) {
+    width: 40%;
+  }
+
+  th:nth-child(3), td:nth-child(3) {
+    width: 10%;
+  }
+
   th:nth-child(4), td:nth-child(4) {
-    width: 30%;
+    width: 35%;
   }
 
   .validation-cell-container {
-    justify-content: center; /* Centrer les cases à cocher sur les petits écrans */
+    justify-content: center; /* Centrer les cases à cocher sur les tablettes */
     align-items: center; /* Centrer verticalement */
   }
 }
